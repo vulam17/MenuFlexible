@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Flexible</title>
+    <script src="https://kit.fontawesome.com/ea9a0dec7a.js" crossorigin="anonymous"></script>
+    <style>
+        *
+        {
+            padding:0;
+            margin:0;
+            box-sizing: border-box;
+            font-size: 30px;
+            font-family: Arial;
+        }
+        .container
+        {
+            width:100%;
+            height: 900px;
+            background-image: linear-gradient(to right, #7f6f80, #7f6f80, #7f6f80 100%);
+            padding-top:100px;
+        }
+        .container>div
+        {
+            margin:0 auto;
+            text-align: center;
+            width: 500px;
+            padding:20px;
+            background-color: #060342;
+            color:white;
+            font-weight: bold;
+        }
+        ul
+        {
+            list-style-type: none;
+            width: 500px;
+            margin:auto;
+        }
+        a
+        {
+            text-decoration: none;
+            padding:20px;
+            color:rgba(255,0,0,0.8);
+            background-color: #ebedf0;
+            display: block;
+            text-align: center;
+            transition: 5s;
+        }
+        i
+        {
+            display: block;
+            cursor: pointer;
+        }
+        i:first-child
+        {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class = "container">
+        <div onclick = check()>Menu
+            <i id = "minus" class="fa-solid fa-minus"></i>
+            <i id = "plus" class="fa-solid fa-plus"></i>
+        </div>
+        <ul>
+            <li><a id = "no1" href="">Home</a></li>
+            <li><a id = "no2" href="">About</a></li>
+            <li><a id = "no3"href="">Contact</a></li>
+            <li><a id = "no4" href="">Gallery</a></li>
+            <li><a id = "no5" href="">Product</a></li>
+        </ul>
+    </div>
+</body>
+<script>
+    let flag = "show", key = false
+    let count = 1
+    let interval
+    function check()
+    {
+        if((flag==="show") && (key == false))
+        {
+            interval = setInterval(showHide,100)
+        }
+        if((flag==="hide")&& (key == false))
+        {
+            interval = setInterval(showHide,100)
+        }
+    }
+    function showHide()
+    {
+        key = true
+        if(flag == "show") 
+        {
+            document.getElementById(`no${count}`).style.transform = "translate(-200px,0)"
+            document.getElementById(`no${count}`).style.transition = "0.5s"
+            document.getElementById(`no${count}`).style.backgroundColor = "transparent"
+            document.getElementById(`no${count}`).style.color = "transparent"
+            document.getElementById(`minus`).style.display = "inline-block"
+            document.getElementById(`plus`).style.display = "none"
+        }
+        else
+        {
+            document.getElementById(`no${count}`).style.transform = "translate(0px,0)"
+            document.getElementById(`no${count}`).style.transition = "0.5s"
+            document.getElementById(`no${count}`).style.backgroundColor = "#ebedf0"
+            document.getElementById(`no${count}`).style.color = "rgba(255,0,0,0.8)"
+            document.getElementById(`minus`).style.display = "none"
+            document.getElementById(`plus`).style.display = "inline-block"
+        }
+        console.log("Type:" + flag + ";count:" + count)
+        if((count == 5) && (flag == "show"))
+        {
+            flag = "hide"
+            count = 0
+            clearInterval(interval)
+            key = false
+        } 
+        if((count == 5) && (flag == "hide"))
+        {
+            flag = "show"
+            count = 0
+            clearInterval(interval)
+            key = false
+        } 
+        count++
+    }
+</script>
+</html>
