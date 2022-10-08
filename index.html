@@ -59,7 +59,7 @@
             background-color: #ebedf0;
             display: block;
             text-align: center;
-            transition: 6s;
+            transition: 0.7s;
         }
         i
         {
@@ -121,26 +121,26 @@
         switch (type)
         {
             case "type1": 
-            x = "-200px" 
+            x = "-300px" 
             y = 0
             break;
             case "type2": 
             x = 0
-            y = "200px"
+            y = "300px"
             break;
             case "type3": 
-            x = "200px" 
+            x = "300px" 
             y = 0
             break;
         }
 
         if((flag==="show") && (key == false))
         {
-            interval = setInterval(showHide,100)
+            interval = setInterval(showHide,120)
         }
         if((flag==="hide")&& (key == false))
         {
-            interval = setInterval(showHide,100)
+            interval = setInterval(showHide,120)
         }
     }
     function showHide()
@@ -149,7 +149,6 @@
         if(flag == "show") 
         {
             document.getElementById(`no${6-count}`).style.transform = `translate(${x},${y})`
-            document.getElementById(`no${6-count}`).style.transition = "0.5s"
             document.getElementById(`no${6-count}`).style.backgroundColor = "transparent"
             document.getElementById(`no${6-count}`).style.color = "transparent"
             document.getElementById(`minus`).style.display = "inline-block"
@@ -158,7 +157,6 @@
         else
         {
             document.getElementById(`no${count}`).style.transform = "translate(0,0)"
-            document.getElementById(`no${count}`).style.transition = "0.5s"
             document.getElementById(`no${count}`).style.backgroundColor = "#ebedf0"
             document.getElementById(`no${count}`).style.color = "rgba(255,0,0,0.8)"
             document.getElementById(`minus`).style.display = "none"
