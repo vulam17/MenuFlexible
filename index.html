@@ -25,7 +25,6 @@
             width:100%;
             height: 2000px;
             background-image: linear-gradient(to right top, #b4fad2, #479bb3, #821e5f);
-            padding-top:100px;
         }
         .container>div
         {
@@ -33,6 +32,7 @@
             text-align: center;
             width: 500px;
             padding:20px;
+            margin-top: 25px;
             background-color: #060342;
             color:white;
             font-weight: bold;
@@ -59,7 +59,7 @@
             background-color: #ebedf0;
             display: block;
             text-align: center;
-            transition: 5s;
+            transition: 6s;
         }
         i
         {
@@ -69,10 +69,33 @@
         {
             display: none;
         }
+        label, select, option
+        {
+            display: block;
+            margin:10px auto;
+            text-align: center;
+            background-color: transparent;
+        }
+        label
+        {
+            font-weight: bold;
+            color: white;
+        }
+        select
+        {
+            border: 1px solid rgba(255,255,255,0.2);
+            color:rgba(200,200,200,0.7);
+        }
     </style>
 </head>
 <body>
     <div class = "container">
+        <label>Choose effect:</label>
+        <select id="type">
+            <option value="type1">Effect 01</option>
+            <option value="type2">Effect 02</option>
+            <option value="type3">Effect 03</option>
+        </select> 
         <div onclick = check()>Menu
             <i id = "minus" class="fa-solid fa-minus"></i>
             <i id = "plus" class="fa-solid fa-plus"></i>
@@ -90,8 +113,26 @@
     let flag = "show", key = false
     let count = 1
     let interval
+    let x = 0, y = 0
     function check()
     {
+        let type = document.getElementById("type").value
+        switch (type)
+        {
+            case "type1": 
+            x = "-200px" 
+            y = 0
+            break;
+            case "type2": 
+            x = 0
+            y = "200px"
+            break;
+            case "type3": 
+            x = "200px" 
+            y = 0
+            break;
+        }
+
         if((flag==="show") && (key == false))
         {
             interval = setInterval(showHide,100)
@@ -106,16 +147,16 @@
         key = true
         if(flag == "show") 
         {
-            document.getElementById(`no${count}`).style.transform = "translate(-200px,0)"
-            document.getElementById(`no${count}`).style.transition = "0.5s"
-            document.getElementById(`no${count}`).style.backgroundColor = "transparent"
-            document.getElementById(`no${count}`).style.color = "transparent"
+            document.getElementById(`no${6-count}`).style.transform = `translate(${x},${y})`
+            document.getElementById(`no${6-count}`).style.transition = "0.5s"
+            document.getElementById(`no${6-count}`).style.backgroundColor = "transparent"
+            document.getElementById(`no${6-count}`).style.color = "transparent"
             document.getElementById(`minus`).style.display = "inline-block"
             document.getElementById(`plus`).style.display = "none"
         }
         else
         {
-            document.getElementById(`no${count}`).style.transform = "translate(0px,0)"
+            document.getElementById(`no${count}`).style.transform = "translate(0,0)"
             document.getElementById(`no${count}`).style.transition = "0.5s"
             document.getElementById(`no${count}`).style.backgroundColor = "#ebedf0"
             document.getElementById(`no${count}`).style.color = "rgba(255,0,0,0.8)"
